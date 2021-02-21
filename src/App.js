@@ -1,14 +1,15 @@
-import Header from './components/Header/Header'
-import Hero from './components/Hero/Hero';
-import MainSection from './components/MainSection/MainSection'
+import { Switch, Route} from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage'
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import './App.scss';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <Header></Header>
-      <Hero />
-      <MainSection />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='*' component={NotFoundPage} />
+      </Switch>
     </div>
   );
 }
