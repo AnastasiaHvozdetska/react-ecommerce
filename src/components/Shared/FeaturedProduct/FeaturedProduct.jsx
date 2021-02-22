@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useCallback, memo } from 'react';
+import { withRouter } from 'react-router-dom';
 import './FeaturedProduct.styles.scss';
 
-const FeaturedProduct = ({ title, imageUrl, price }) => {
+const FeaturedProduct = ({ title, imageUrl, price, history: { push }, id }) => {
+    const handleClick = useCallback(
+        () => {
+            push(`/product/${id}`)
+        },
+        [push, id],
+    )
     return (
         <div className="featured-product">
-            <div className="featured-image">
+            <div className="featured-image" onClick={handleClick}>
                 <img src={imageUrl} alt="product" />
             </div>
             <div className="name-price">
@@ -18,4 +25,4 @@ const FeaturedProduct = ({ title, imageUrl, price }) => {
     )
 }
 
-export default FeaturedProduct
+export default withRouter(memo(FeaturedProduct))
